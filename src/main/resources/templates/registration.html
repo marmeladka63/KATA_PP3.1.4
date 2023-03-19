@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Registration</title>
+</head>
+<body>
+<div class="container-fluid d-flex h-100 justify-content-center align-items-center p-0">
+    <div class="row mgTp">
+<form style="width: 400px; margin-top: 50px;" th:method="POST" th:action="@{/registration}" th:object="${user}">
+    <h2>Регистрация</h2>
+    <div class="form-group">
+        <div class="form-group">
+            <label for="firstname1"><b>Введите имя</b></label>
+            <input type="text"
+                   th:name="username"
+                   th:value="*{username}"
+                   class="form-control" id="firstName1"/>
+        </div>
+        <div class="form-group">
+            <label for="lastName1"><b>Введите фамилию</b></label>
+            <input type="text"
+                   th:name="lastname"
+                   th:value="*{lastname}"
+                   class="form-control" id="lastName1"/>
+        </div>
+        <div class="form-group">
+            <label for="age1"><b>Введите ваш возраст</b></label>
+            <input type="number"
+                   th:name="age"
+                   th:value="*{age}" class="form-control"
+                   id="age1" min="1" max="100" step="1"/>
+
+
+        </div>
+        <div class="form-group">
+            <label for="email1"><b>Введите email</b></label>
+            <input type="text"
+                   th:name="email"
+                   th:value="*{email}" class="form-control"
+                   id="email1"/>
+        </div>
+        <div class="form-group">
+            <label for="password2"><b>Введите пароль</b></label>
+            <input type="password"
+                   th:name="password"
+                   th:value="*{password}"
+                   class="form-control" id="password2"/>
+        </div>
+        <div class="form-group">
+            <label for="roles2"><b>Role</b></label>
+            <select th:name="roles"
+                    th:value="*{roles}" multiple
+                    class="form-control form-control-sm"
+                    id="roles2" name="roles" size="3"
+                    required>
+                <option th:each="role: ${roles}"
+                        th:value="${role.id}"
+                        th:text="${role.getRole()}">
+                </option>
+            </select>
+
+            <button type="submit" class="btn btn-lg btn-primary btn-block"> Зарегестрироваться</button>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
